@@ -1,0 +1,23 @@
+<launch>
+  <!-- No namespace here as we will share this description. 
+       Access with slash at the beginning -->
+  <!-- <param name="/husky/robot_description" command="$(find xacro)/xacro $(find ur5e_husky)/urdf/husky.urdf.xacro" /> -->
+
+  <!-- BEGIN ROBOT 1-->
+  <group ns="Husky">
+    <param name="tf_prefix" value="husky" />
+    <include file="$(find ur5e_husky)/launch/2_husky.launch" >
+      <!-- <arg name="initial_pose" value="-x 1 -y 1 -z 0" /> -->
+      <arg name="robot_name"  value="husky" />
+    </include>
+  </group>
+
+  <!-- BEGIN ROBOT 2-->
+  <group ns="UR5E">
+    <param name="tf_prefix" value="ur5e" />
+    <include file="$(find ur5e_husky)/launch/2_ur5e.launch" >
+      <!-- <arg name="initialpose" value="-x 100 -y 0 -z 0" /> -->
+      <arg name="robot_name"  value="ur5e" />
+    </include>
+  </group>
+</launch>

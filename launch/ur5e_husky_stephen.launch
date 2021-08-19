@@ -1,0 +1,29 @@
+<launch>
+  
+  <arg name="robot_namespace" default="/"/>
+  <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
+  <arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED false)"/>
+  <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
+
+    <include file="$(find ur_e_description)/launch/ur5e_upload.launch"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ur5e_husky)/urdf/ur5e_husky_stephen.urdf.xacro'
+    robot_namespace:=$(arg robot_namespace)
+    laser_enabled:=$(arg laser_enabled)
+    realsense_enabled:=$(arg realsense_enabled)
+    urdf_extras:=$(arg urdf_extras)
+    " />
+
+  
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+    <param name="use_gui" value="true"/>
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ur5e_husky)/cfg/view_robot.rviz" required="true" />
+
+
+</launch>
