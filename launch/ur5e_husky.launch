@@ -13,7 +13,7 @@
   </group>
 
   <!-- BEGIN ROBOT 2-->
-  <group ns="UR5E">
+  <group ns="/">
     <param name="tf_prefix" value="ur5e" />
     <include file="$(find ur5e_husky)/launch/2_ur5e.launch" >
       <!-- <arg name="initialpose" value="-x 100 -y 0 -z 0" /> -->
