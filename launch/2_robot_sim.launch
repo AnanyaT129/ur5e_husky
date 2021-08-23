@@ -1,0 +1,9 @@
+<launch>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="link1_broadcaster" args="-0.105 0 0 0 0 0  husky/top_plate_front_link ur5e/base_link" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ur5e_husky)/cfg/2_robot.rviz" required="true"/>
+
+  <include file="$(find ur5e_husky)/launch/ur5e_husky.launch"/>
+  
+</launch>
